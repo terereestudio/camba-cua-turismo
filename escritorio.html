@@ -115,8 +115,12 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 @media (prefers-reduced-motion:reduce){.scene *{animation:none!important}}
 .contact-blue .c-dl dd a{color:#fff;text-decoration:none;cursor:pointer}
 .contact-blue .c-dl dd a:hover{opacity:.8}
-.reel-d{background:#fff;border:2px solid var(--line);border-radius:20px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
-.reel-d .hero-row{margin:0}
+.reel-d{background:#fff;border:2px solid var(--line);border-radius:20px;padding:36px;display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:40px;align-items:center}
+.reel-d:has(.reel-emb:empty){grid-template-columns:minmax(0,1fr)}
+.reel-emb{min-width:0}
+.reel-txt{display:grid;gap:12px;justify-items:start;min-width:0}
+.reel-txt .hero-row{margin:8px 0 0}
+.reel-d .instagram-media{margin:0 auto!important;max-width:360px!important}
 .instagram-media,.instagram-media iframe{width:100%!important;min-width:0!important;max-width:540px!important;display:block}
 </style></head><body>
 
@@ -196,17 +200,17 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 </ul></div>
 
 <section class="sec" style="padding-top:56px;padding-bottom:0"><div class="d-in">
-  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DezkM9Qxjzi/" data-instgrm-version="14" style="max-width:540px;width:100%;margin:0 auto 16px"></blockquote><script async src="https://www.instagram.com/embed.js"></script>
   <div class="reel-d">
-    <div>
+    <div class="reel-emb"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DezkM9Qxjzi/" data-instgrm-version="14" style="max-width:540px;width:100%;margin:0 auto 16px"></blockquote><script async src="https://www.instagram.com/embed.js"></script></div>
+    <div class="reel-txt">
       <span class="tag" style="background:var(--yellow);color:#14202A">Novedades</span>
-      <h2 class="sec-h" style="margin-top:12px">Crucero por el Caribe y Panamá</h2>
+      <h2 class="sec-h">Crucero por el Caribe y Panamá</h2>
       <p class="sec-s">Cartagena, Aruba y Curazao. Salida: 16 de abril de 2027.</p>
       <p class="sec-s">Comentá CARIBE en Instagram y te enviamos toda la información por privado.</p>
-    </div>
-    <div class="hero-row">
-      <a class="btn btn-line" href="https://www.instagram.com/reel/DezkM9Qxjzi/" target="_blank" rel="noopener">Seguinos en Instagram</a>
-      <a class="btn btn-wa" href="https://wa.me/5493782534556?text=Hola%20Camba%20Cua%2C%20quiero%20consultar%20por%20el%20crucero%20por%20el%20Caribe%20y%20Panam%C3%A1%20%28salida%2016/04/2027%29." target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#wa"/></svg>Consultar por WhatsApp</a>
+      <div class="hero-row">
+        <a class="btn btn-line" href="https://www.instagram.com/reel/DezkM9Qxjzi/" target="_blank" rel="noopener">Seguinos en Instagram</a>
+        <a class="btn btn-wa" href="https://wa.me/5493782534556?text=Hola%20Camba%20Cua%2C%20quiero%20consultar%20por%20el%20crucero%20por%20el%20Caribe%20y%20Panam%C3%A1%20%28salida%2016/04/2027%29." target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#wa"/></svg>Consultar por WhatsApp</a>
+      </div>
     </div>
   </div>
 </div></section>
