@@ -132,8 +132,11 @@ footer .wrap{padding-block:24px;display:grid;gap:4px}
 /* mob-dest */
 .dest{display:flex;flex-direction:column}
 .dest .body{flex:1;padding:20px 20px 22px;align-content:start}
-.dest .body>.more{justify-self:start;min-height:52px;padding:0 20px;border-radius:999px;border:2px solid var(--blue);background:#fff;color:var(--blue);font:inherit;font-weight:800;font-size:1.05rem;cursor:pointer}
-.dest .body>.btn{margin-top:auto}
+.dest-row{display:grid;grid-template-columns:1fr 60px;gap:10px;align-items:stretch}
+.dest .more{min-height:60px;border-radius:14px;border:2px solid var(--blue);background:#fff;color:var(--blue);font:inherit;font-weight:800;font-size:1.15rem;cursor:pointer}
+.dest-wa{display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--wa);color:#fff;text-decoration:none}
+.dest-wa svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dest .body>.dest-row{margin-top:auto}
 .dest p,.dest h3{overflow-wrap:anywhere}
 dialog.sheet{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:none;max-height:88vh;border:0;border-radius:24px 24px 0 0;padding:0;background:#fff;color:var(--text);box-shadow:0 -10px 40px rgba(0,0,0,.25);overflow:hidden}
 dialog.sheet::backdrop{background:rgba(10,30,40,.55)}
@@ -290,8 +293,10 @@ document.getElementById("list").innerHTML=D.map((x,i)=>`
  <article class="dest">${x.img?`<img src="${x.img}" alt="${x.n}">`:`<div class="ph">${x.n}</div>`}<div class="body">
   <span class="kind ${x.k==="Internacional"?"int":""}">${x.k}</span>
   <h3>${x.n}</h3><p>${x.d}</p>
-  <button class="more" type="button" data-i="${i}" aria-haspopup="dialog">Ver más</button>
-  <a class="btn btn-wa" href="${link(msg(x.n))}" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>Consultar este viaje</a>
+  <div class="dest-row">
+   <button class="more" type="button" data-i="${i}" aria-haspopup="dialog">Ver más</button>
+   <a class="dest-wa" href="${link(msg(x.n))}" target="_blank" rel="noopener" aria-label="Consultar este viaje por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
+  </div>
  </div></article>`).join("");
 let sheet=null;document.addEventListener("DOMContentLoaded",()=>{sheet=document.getElementById("sheet");
 document.getElementById("list").addEventListener("click",e=>{
