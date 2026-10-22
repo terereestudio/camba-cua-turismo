@@ -184,6 +184,15 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 .car-track.has-open>.card.mini .dest-wa{display:none}
 .car-track.has-open>.card.mini .dest-row{grid-template-columns:minmax(0,1fr)}
 .reel-row{grid-template-columns:60px 60px}
+/* mini-v */
+.car-track.has-open{align-items:stretch;grid-template-rows:repeat(3,minmax(190px,1fr))}
+.car-track.has-open>.card.mini{display:flex;flex-direction:column;height:100%;min-height:0;padding:0}
+.car-track.has-open>.card.mini img{flex:1 1 0;min-height:0;width:100%;height:auto;aspect-ratio:auto;object-fit:cover}
+.car-track.has-open>.card.mini .b{flex:0 0 auto;display:flex;flex-direction:row;align-items:center;gap:10px;padding:12px 14px;align-content:center}
+.car-track.has-open>.card.mini .b>h3{flex:1 1 auto;min-width:0;font-size:1rem;line-height:1.2;margin:0}
+.car-track.has-open>.card.mini .b>.dest-row{flex:0 0 auto;margin:0;display:block}
+.car-track.has-open>.card.mini .b>.dest-row .more{width:auto;min-height:40px;padding:0 14px;font-size:.95rem;white-space:nowrap}
+.car-track.has-open>.card.mini .b>.tag,.car-track.has-open>.card.mini .b>p,.car-track.has-open>.card.mini .b>.more-info{display:none}
 </style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
