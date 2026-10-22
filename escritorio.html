@@ -177,6 +177,13 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 .card .dest-wa:hover{background:var(--wa-dark)}
 .card .dest-wa svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .car-track.has-open>.card.open .dest-row{margin-top:8px}
+/* fix3 */
+.card .b>.tag{align-self:flex-start;justify-self:start}
+.card .dest-row{grid-template-columns:minmax(0,1fr);gap:8px}
+.card .dest-wa{min-height:48px;width:100%}
+.car-track.has-open>.card.mini .dest-wa{display:none}
+.car-track.has-open>.card.mini .dest-row{grid-template-columns:minmax(0,1fr)}
+.reel-row{grid-template-columns:60px 60px}
 </style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -262,7 +269,7 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
       <span class="tag" style="background:var(--yellow);color:#14202A">Novedades</span>
       <h2 class="sec-h">Crucero por el Caribe y Panamá</h2>
       <p class="sec-s">Cartagena, Aruba y Curazao. Salida: 16 de abril de 2027.</p>
-      <div class="reel-info" id="reel-info" hidden>
+      <div class="reel-info" id="reel-info">
         <p>¿Te imaginás despertarte cada día en un destino diferente, rodeado de playas paradisíacas y paisajes increíbles, sin tener que armar y desarmar las valijas? 🌊☀️</p>
         <p>En este viaje vamos a descubrir tres destinos fascinantes: Cartagena, Aruba y Curazao, combinando la comodidad de un crucero con la oportunidad de conocer lugares únicos.</p>
         <p class="reel-q"><b>¿Qué incluye esta propuesta?</b></p>
@@ -279,7 +286,6 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
       <div class="reel-row">
         <a class="reel-ic reel-ig" href="https://www.instagram.com/reel/DezkM9Qxjzi/" target="_blank" rel="noopener" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg></a>
         <a class="reel-ic reel-wa" href="https://wa.me/5493782534556?text=Hola%20Camba%20Cua%2C%20quiero%20consultar%20por%20el%20crucero%20por%20el%20Caribe%20y%20Panam%C3%A1%20%28salida%2016/04/2027%29." target="_blank" rel="noopener" aria-label="Consultar por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
-        <button class="reel-more" type="button" id="reel-more" aria-expanded="false" aria-controls="reel-info">Ver más</button>
       </div>
     </div>
   </div>
@@ -358,4 +364,3 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
   });
 })();
 </script>
-<script>(function(){var b=document.getElementById("reel-more"),i=document.getElementById("reel-info");if(!b||!i)return;b.addEventListener("click",function(){var o=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",o?"false":"true");b.textContent=o?"Ver más":"Ver menos";i.hidden=o;});})();</script>
