@@ -147,11 +147,20 @@ dialog.sheet[open]{display:flex;flex-direction:column;animation:sheet-up .25s ea
 .sheet-scroll .sheet-txt{color:var(--muted);font-size:1.05rem;display:grid;gap:10px}
 .sheet-scroll .sheet-txt ul{margin:0;padding-left:20px}
 .sheet-scroll .btn{width:100%;justify-content:center}
+/* reel-row */
+.reel-row{display:grid;grid-template-columns:60px 60px 1fr;gap:10px;align-items:stretch}
+.reel-ic{display:flex;align-items:center;justify-content:center;min-height:60px;border-radius:14px;text-decoration:none}
+.reel-ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.reel-ig{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.reel-wa{background:var(--wa);color:#fff;border:2px solid var(--wa)}
+.reel-more{min-height:60px;border-radius:14px;border:0;background:var(--yellow);color:#14202A;font:inherit;font-family:var(--b);font-weight:800;font-size:1.2rem;cursor:pointer}
+.sheet-scroll .sheet-txt p{margin:0}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="wa" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 1.8.8c-.2 1.3-1.2 1.9-2.3 1.7-3-.6-5.4-3-6-6-.2-1.1.4-2.1 1.7-2.3l.8 1.8-1 1.2"/></symbol>
  <symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+ <symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
  <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
 </svg>
@@ -207,9 +216,20 @@ dialog.sheet[open]{display:flex;flex-direction:column;animation:sheet-up .25s ea
     <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DezkM9Qxjzi/" data-instgrm-version="14" style="max-width:540px;width:100%;margin:0 auto 16px"></blockquote><script async src="https://www.instagram.com/embed.js"></script>
     <h2 class="sec-title">Crucero por el Caribe y Panamá</h2>
     <p>Cartagena, Aruba y Curazao. Salida: 16 de abril de 2027.</p>
-    <a class="btn btn-line" href="https://www.instagram.com/reel/DezkM9Qxjzi/" target="_blank" rel="noopener">Seguinos en Instagram</a>
-    <a class="btn btn-wa" data-wa="caribe">Consultar por WhatsApp</a>
+    <div class="reel-row">
+      <a class="reel-ic reel-ig" href="https://www.instagram.com/reel/DezkM9Qxjzi/" target="_blank" rel="noopener" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg></a>
+      <a class="reel-ic reel-wa" data-wa="caribe" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
+      <button class="reel-more" type="button" id="reel-more" aria-haspopup="dialog">Ver más</button>
+    </div>
     <p class="note">Comentá CARIBE en Instagram y te enviamos toda la información por privado.</p>
+    <template id="reel-full">
+      <p>¿Te imaginás despertarte cada día en un destino diferente, rodeado de playas paradisíacas y paisajes increíbles, sin tener que armar y desarmar las valijas? 🌊☀️</p>
+      <p>En este viaje vamos a descubrir tres destinos fascinantes: Cartagena, Aruba y Curazao, combinando la comodidad de un crucero con la oportunidad de conocer lugares únicos.</p>
+      <p><b>¿Qué incluye esta propuesta?</b></p>
+      <ul><li>✈️ Vuelos desde Asunción con equipaje incluido.</li><li>🚐 Traslados.</li><li>🏨 3 noches de alojamiento con desayuno en un hotel 5 estrellas en Panamá.</li><li>🚢 7 noches a bordo de un crucero Royal Caribbean con régimen todo incluido.</li></ul>
+      <p>¡Y hay algo más! Podés reservar tu lugar con una seña y financiar el resto en cuotas, para que puedas organizar tu viaje con mayor comodidad.</p>
+      <p><b>¿Te gustaría vivir esta experiencia con nosotras?</b> ¡El Caribe te espera! 💙</p>
+    </template>
   </div>
 </div></section>
 <section id="destinos" style="padding-top:36px"><div class="wrap">
@@ -293,6 +313,18 @@ const T={general:"Hola Camba Cua, quiero hacer una consulta sobre un viaje.",
  ofertas:"Hola Camba Cua, quiero ver los destinos y ofertas vigentes.",
  caribe:"Hola Camba Cua, quiero consultar por el crucero por el Caribe y Panamá (salida 16/04/2027)."};
 document.querySelectorAll("[data-wa]").forEach(a=>{a.href=link(T[a.dataset.wa]);a.target="_blank";a.rel="noopener"});
+document.addEventListener("DOMContentLoaded",()=>{
+  const b=document.getElementById("reel-more"); if(!b) return;
+  b.addEventListener("click",()=>{
+    const sh=document.getElementById("sheet");
+    document.getElementById("sheet-img").hidden=true;
+    document.getElementById("sheet-k").textContent="Novedades";
+    document.getElementById("sheet-n").textContent="Crucero por el Caribe y Panamá";
+    document.getElementById("sheet-d").innerHTML=document.getElementById("reel-full").innerHTML;
+    document.getElementById("sheet-wa").href=link(T.caribe);
+    sh.showModal();
+  });
+});
 </script>
 
 <dialog class="sheet" id="sheet" aria-labelledby="sheet-n">
