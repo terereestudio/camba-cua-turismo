@@ -140,6 +140,19 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 .car-nav{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}
 .car-btn{width:52px;height:52px;border-radius:50%;border:2px solid var(--blue);background:#fff;color:var(--blue);font:inherit;font-size:1.7rem;font-weight:800;line-height:1;cursor:pointer}
 .car-btn:disabled{opacity:.35;cursor:default}
+/* expand */
+.car-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start;overflow:visible}
+.car-track>.card{flex:none;width:auto;scroll-snap-align:none;transition:none}
+.car-nav{display:none}
+.car-track.has-open>.card.open{flex-direction:row;grid-row:1 / span 3;min-width:0}
+.car-track.has-open>.card.open img{width:44%;aspect-ratio:auto;height:auto;min-height:100%;object-fit:cover}
+.car-track.has-open>.card.open .b{padding:22px 24px;align-content:start}
+.car-track.has-open>.card.mini{flex-direction:row;min-width:0}
+.car-track.has-open>.card.mini img{width:112px;min-width:112px;aspect-ratio:auto;height:auto}
+.car-track.has-open>.card.mini .b{padding:12px 14px;gap:6px}
+.car-track.has-open>.card.mini .b h3{font-size:1rem;line-height:1.25}
+.car-track.has-open>.card.mini .tag,.car-track.has-open>.card.mini .b>p,.car-track.has-open>.card.mini .more-info,.car-track.has-open>.card.mini .btn-wa{display:none}
+.car-track.has-open>.card.mini .more{min-height:40px;font-size:.95rem}
 </style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -294,20 +307,27 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 </body></html>
 <script>
 (function(){
-  var car=document.querySelector('.car-track');
-  if(!car) return;
-  var prev=document.querySelector('.car-btn[data-dir="-1"]'), next=document.querySelector('.car-btn[data-dir="1"]');
-  function step(){ var c=car.querySelector('.card'); return c ? c.getBoundingClientRect().width+22 : 300; }
-  function sync(){ prev.disabled=car.scrollLeft<=2; next.disabled=car.scrollLeft+car.clientWidth>=car.scrollWidth-2; }
-  prev.addEventListener('click',function(){ car.scrollBy({left:-step(),behavior:'smooth'}); });
-  next.addEventListener('click',function(){ car.scrollBy({left:step(),behavior:'smooth'}); });
-  car.addEventListener('scroll',sync,{passive:true}); window.addEventListener('resize',sync); sync();
-  document.querySelectorAll('.card .more').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var info=document.getElementById(btn.getAttribute('aria-controls'));
-      var open=btn.getAttribute('aria-expanded')==='true';
-      btn.setAttribute('aria-expanded',open?'false':'true'); btn.textContent=open?'Ver más':'Ver menos';
-      info.hidden=open; btn.closest('.card').style.alignSelf='flex-start';
+  var track=document.querySelector('.car-track'); if(!track) return;
+  var cards=[].slice.call(track.querySelectorAll('.card'));
+  function reset(){
+    track.classList.remove('has-open');
+    cards.forEach(function(c){ c.classList.remove('open','mini'); c.style.gridColumn=''; c.style.gridRow='';
+      var b=c.querySelector('.more'), i=c.querySelector('.more-info');
+      b.setAttribute('aria-expanded','false'); b.textContent='Ver más'; i.hidden=true; });
+  }
+  function open(card){
+    reset();
+    track.classList.add('has-open');
+    var n=0;
+    cards.forEach(function(c){
+      var b=c.querySelector('.more'), i=c.querySelector('.more-info');
+      if(c===card){ c.classList.add('open'); c.style.gridColumn='1 / span 3'; c.style.gridRow='1 / span 3'; b.setAttribute('aria-expanded','true'); b.textContent='Ver menos'; i.hidden=false; }
+      else { n++; c.classList.add('mini'); c.style.gridColumn='4'; c.style.gridRow=String(n); }
+    });
+  }
+  cards.forEach(function(c){
+    c.querySelector('.more').addEventListener('click',function(){
+      if(c.classList.contains('open')){ reset(); } else { open(c); }
     });
   });
 })();
