@@ -129,6 +129,24 @@ footer .wrap{padding-block:24px;display:grid;gap:4px}
 .reel .note{font-size:.95rem}
 .reel>*{min-width:0}
 .reel .instagram-media,.reel iframe{width:100%!important;min-width:0!important;max-width:100%!important}
+/* mob-dest */
+.dest{display:flex;flex-direction:column}
+.dest .body{flex:1;padding:20px 20px 22px;align-content:start}
+.dest .body>.more{justify-self:start;min-height:52px;padding:0 20px;border-radius:999px;border:2px solid var(--blue);background:#fff;color:var(--blue);font:inherit;font-weight:800;font-size:1.05rem;cursor:pointer}
+.dest .body>.btn{margin-top:auto}
+.dest p,.dest h3{overflow-wrap:anywhere}
+dialog.sheet{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:none;max-height:88vh;border:0;border-radius:24px 24px 0 0;padding:0;background:#fff;color:var(--text);box-shadow:0 -10px 40px rgba(0,0,0,.25);overflow:hidden}
+dialog.sheet::backdrop{background:rgba(10,30,40,.55)}
+dialog.sheet[open]{display:flex;flex-direction:column;animation:sheet-up .25s ease-out}
+@keyframes sheet-up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.sheet-top{display:flex;justify-content:flex-end;padding:10px 10px 0}
+.sheet-x{width:52px;height:52px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:1.8rem;line-height:1;cursor:pointer;color:var(--text)}
+.sheet-scroll{flex:1;min-height:0;overflow-y:auto;padding:0 20px 24px;display:grid;gap:14px;align-content:start}
+.sheet-scroll img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;display:block}
+.sheet-scroll h2{font-family:var(--h);font-size:1.6rem;font-weight:800;line-height:1.2;margin:0;overflow-wrap:anywhere}
+.sheet-scroll .sheet-txt{color:var(--muted);font-size:1.05rem;display:grid;gap:10px}
+.sheet-scroll .sheet-txt ul{margin:0;padding-left:20px}
+.sheet-scroll .btn{width:100%;justify-content:center}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -247,12 +265,33 @@ const D=[
 const MORE=["Buenos Aires","La Rioja","San Martín de los Andes"];
 const link=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t);
 const msg=d=>`Hola Camba Cua, quiero consultar por el viaje a ${d}. ¿Me pasan fechas y precios?`;
-document.getElementById("list").innerHTML=D.map(x=>`
+const FULL={
+ "Café & Sabores: Colombia + Perú":["Salida grupal acompañada, del 9 al 18 de marzo de 2027, con acompañamiento durante todo el viaje.","Medellín y Comuna 13: transformación cultural y artística de la ciudad.","Eje Cafetero: tradición cafetera y los pueblos de Salento y Filandia.","Guatapé y Piedra del Peñol: paisajes y vistas panorámicas.","Lima: Miraflores, un mercado local y una clase de cocina peruana.","Vuelos desde Asunción. Desde USD 2.290, con seña desde USD 200."],
+ "Caribe: viajá mejor, disfrutá más y pagá menos":["¿Te imaginás disfrutando de las playas del Caribe con menos gente y a precios más convenientes? La temporada baja puede ser una excelente oportunidad para descubrir destinos paradisíacos, aprovechar mejores tarifas y disfrutar de una experiencia más relajada.","Podés elegir entre Cancún, Playa del Carmen, Punta Cana, Aruba, Curazao y muchos destinos más.","Contanos qué tipo de viaje estás buscando y te ayudamos a encontrar alternativas según tus preferencias y presupuesto.","Las ventajas de la temporada baja dependen del destino y de las fechas: no garantizamos menos turistas, mejores servicios ni tarifas más económicas."]
+};
+const DEF_FULL=["Consultanos por fechas, cupos y precios actualizados."];
+const MSG_FOR=n=>`Hola Camba Cua, quiero consultar por el viaje a ${n}. ¿Me pasan fechas y precios?`;
+document.getElementById("list").innerHTML=D.map((x,i)=>`
  <article class="dest">${x.img?`<img src="${x.img}" alt="${x.n}">`:`<div class="ph">${x.n}</div>`}<div class="body">
   <span class="kind ${x.k==="Internacional"?"int":""}">${x.k}</span>
   <h3>${x.n}</h3><p>${x.d}</p>
+  <button class="more" type="button" data-i="${i}" aria-haspopup="dialog">Ver más</button>
   <a class="btn btn-wa" href="${link(msg(x.n))}" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>Consultar este viaje</a>
  </div></article>`).join("");
+let sheet=null;document.addEventListener("DOMContentLoaded",()=>{sheet=document.getElementById("sheet");
+document.getElementById("list").addEventListener("click",e=>{
+  const btn=e.target.closest(".more"); if(!btn) return;
+  const x=D[+btn.dataset.i]; const full=FULL[x.n]||DEF_FULL;
+  const img=document.getElementById("sheet-img");
+  if(x.img){ img.src=x.img; img.alt=x.n; img.hidden=false; } else { img.removeAttribute("src"); img.hidden=true; }
+  document.getElementById("sheet-k").textContent=x.k;
+  document.getElementById("sheet-n").textContent=x.n;
+  document.getElementById("sheet-d").innerHTML=full.length>1?"<p>"+full[0]+"</p><ul>"+full.slice(1,-1).map(t=>"<li>"+t+"</li>").join("")+"</ul><p>"+full[full.length-1]+"</p>":"<p>"+full[0]+"</p>";
+  document.getElementById("sheet-wa").href=link(MSG_FOR(x.n));
+  sheet.showModal();
+});
+document.getElementById("sheet-x").addEventListener("click",()=>sheet.close());
+sheet.addEventListener("click",e=>{ if(e.target===sheet) sheet.close(); });});
 document.getElementById("chips").innerHTML=MORE.map(n=>`<a href="${link(msg(n))}" target="_blank" rel="noopener">${n}</a>`).join("");
 const T={general:"Hola Camba Cua, quiero hacer una consulta sobre un viaje.",
  grupo:"Hola Camba Cua, quiero consultar por un viaje en grupo. Somos ___ personas.",
@@ -262,4 +301,14 @@ const T={general:"Hola Camba Cua, quiero hacer una consulta sobre un viaje.",
 document.querySelectorAll("[data-wa]").forEach(a=>{a.href=link(T[a.dataset.wa]);a.target="_blank";a.rel="noopener"});
 </script>
 
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-n">
+  <div class="sheet-top"><button class="sheet-x" type="button" id="sheet-x" aria-label="Cerrar">&times;</button></div>
+  <div class="sheet-scroll">
+    <img id="sheet-img" alt="">
+    <span class="kind" id="sheet-k"></span>
+    <h2 id="sheet-n"></h2>
+    <div class="sheet-txt" id="sheet-d"></div>
+    <a class="btn btn-wa" id="sheet-wa" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>Consultar este viaje</a>
+  </div>
+</dialog>
 </body></html>
