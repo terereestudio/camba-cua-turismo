@@ -148,6 +148,7 @@ dialog.sheet[open]{display:flex;flex-direction:column;animation:sheet-up .25s ea
 .sheet-x{width:52px;height:52px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:1.8rem;line-height:1;cursor:pointer;color:var(--text)}
 .sheet-scroll{flex:1;min-height:0;overflow-y:auto;padding:0 20px 24px;display:grid;gap:14px;align-content:start}
 .sheet-scroll img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;display:block}
+.sheet-scroll img[hidden]{display:none}
 .sheet-scroll h2{font-family:var(--h);font-size:1.6rem;font-weight:800;line-height:1.2;margin:0;overflow-wrap:anywhere}
 .sheet-scroll .sheet-txt{color:var(--muted);font-size:1.05rem;display:grid;gap:10px}
 .sheet-scroll .sheet-txt ul{margin:0;padding-left:20px}
@@ -324,7 +325,10 @@ document.addEventListener("DOMContentLoaded",()=>{
   const b=document.getElementById("reel-more"); if(!b) return;
   b.addEventListener("click",()=>{
     const sh=document.getElementById("sheet");
-    document.getElementById("sheet-img").hidden=true;
+    const img=document.getElementById("sheet-img");
+    const bg=getComputedStyle(document.querySelector(".reel .instagram-media")).backgroundImage;
+    const m=bg.match(/url\(["']?(.*?)["']?\)/);
+    if(m){ img.src=m[1]; img.alt="Crucero por el Caribe y Panamá"; img.hidden=false; } else { img.hidden=true; }
     document.getElementById("sheet-k").textContent="Novedades";
     document.getElementById("sheet-n").textContent="Crucero por el Caribe y Panamá";
     document.getElementById("sheet-d").innerHTML=document.getElementById("reel-full").innerHTML;
