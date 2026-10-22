@@ -163,6 +163,8 @@ dialog.sheet::after{content:"";display:block;flex:none;height:4px;margin-top:0;b
 .reel-wa{background:var(--wa);color:#fff;border:2px solid var(--wa)}
 .reel-more{min-height:60px;border-radius:14px;border:0;background:var(--yellow);color:#14202A;font:inherit;font-family:var(--b);font-weight:800;font-size:1.2rem;cursor:pointer}
 .sheet-scroll .sheet-txt p{margin:0}
+.hero-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-pair .btn{min-height:60px;padding:10px 12px;font-size:1.05rem;line-height:1.25;text-align:center}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -213,8 +215,11 @@ dialog.sheet::after{content:"";display:block;flex:none;height:4px;margin-top:0;b
 </g></g>
 </svg></div><div class="wrap">
   <h1>Tu próximo viaje empieza acá</h1>
-  <p>Elegí un destino y consultanos por WhatsApp. Te respondemos personalmente desde Corrientes.</p>
-  <a class="btn btn-y" href="#destinos">Ver destinos</a>
+  <p>¿Buscás otro destino? Consultanos o te armamos un paquete a medida.</p>
+  <div class="hero-pair">
+    <a class="btn btn-y" href="#destinos">Ver destinos</a>
+    <a class="btn btn-wa" data-wa="otro"><svg class="i"><use href="#wa"/></svg>Escribinos</a>
+  </div>
 </div></section>
 
 
@@ -245,7 +250,6 @@ dialog.sheet::after{content:"";display:block;flex:none;height:4px;margin-top:0;b
   <p class="sec-sub">Salidas desde Corrientes. Consultá fechas y precios.</p>
   <div class="list" id="list"></div>
   <a class="btn btn-y" style="margin-top:18px" data-wa="ofertas">Ver más destinos</a>
-  <a class="btn btn-line" style="margin-top:12px" data-wa="otro">¿Buscás otro destino? Consultanos o te armamos un paquete a medida</a>
 </div></section>
 
 <section class="groups"><div class="wrap">
