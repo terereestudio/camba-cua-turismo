@@ -167,6 +167,12 @@ dialog.sheet::after{content:"";display:block;flex:none;height:4px;margin-top:0;b
 .hero-pair .btn{min-height:60px;padding:10px 12px;font-size:1.05rem;line-height:1.25;text-align:center}
 .grp{display:grid;gap:12px;margin-top:20px}
 .grp+.grp{margin-top:16px}
+.firma-te{background:#161415;padding:14px 16px;text-align:center}
+.firma-te a{display:inline-flex;align-items:center;gap:10px;color:#F3E9DA;text-decoration:none;font:500 14px/1 system-ui,sans-serif}
+.firma-te img{height:28px;width:auto;opacity:.9}
+.firma-te a:hover img,.firma-te a:focus-visible img{opacity:1}
+.firma-te a:focus-visible{outline:2px solid #9FBD2B;outline-offset:4px}
+@media (max-width:600px){.firma-te img{height:24px}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -359,4 +365,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     <a class="btn btn-wa" id="sheet-wa" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>Consultar este viaje</a>
   </div>
 </dialog>
+<div class="firma-te">
+  <a href="https://terereestudio.com.ar" rel="noopener">
+    <span>Desarrollado por</span>
+    <img src="img/firma-terereestudio.webp" width="360" height="120" alt="Tereré Estudio" loading="lazy">
+  </a>
+</div>
 </body></html>
