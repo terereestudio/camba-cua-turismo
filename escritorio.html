@@ -112,6 +112,12 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 .sc-b3{animation:sc-rise 11s ease-in-out infinite;animation-delay:-3s}
 @keyframes sc-rise{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-28px)}}
 .hero h1,.hero p{text-shadow:0 1px 10px rgba(0,30,40,.5)}
+/* Cabecera flotando sobre el hero, sin franja azul */
+.nav{position:absolute;top:0;left:0;right:0;z-index:3;background:none;border-bottom:0}
+.nav .d-in{min-height:0;padding-block:18px}
+.nav ul a,.nav-r b,.nav-r small{text-shadow:0 1px 8px rgba(0,30,40,.6)}
+.nav .logo{filter:drop-shadow(0 2px 6px rgba(0,30,40,.45))}
+.hero .d-in{padding-top:150px}
 @media (prefers-reduced-motion:reduce){.scene *{animation:none!important}}
 .contact-blue .c-dl dd a{color:#fff;text-decoration:none;cursor:pointer}
 .contact-blue .c-dl dd a:hover{opacity:.8}
