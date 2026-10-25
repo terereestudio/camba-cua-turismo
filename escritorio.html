@@ -217,7 +217,9 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 /* Fachada del reel de Instagram: el embed carga solo al hacer clic */
 .ig-box{position:relative}
 .ig-load{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border:0;border-radius:inherit;background:rgba(12,52,66,.18);color:#fff;font:inherit;cursor:pointer;text-align:center}
-.ig-load span{background:var(--yellow);color:#14202A;border-radius:999px;padding:12px 22px;font-family:var(--b);font-weight:800;font-size:1rem}
+.ig-play{width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 6px 22px rgba(0,30,40,.35);transition:transform .15s}
+.ig-play svg{width:36px;height:36px;fill:#14202A;margin-left:5px}
+.ig-load:hover .ig-play{transform:scale(1.06)}
 .ig-load small{font-size:.8rem;font-weight:600;background:rgba(12,52,66,.72);border-radius:999px;padding:4px 12px}
 .reel-emb .ig-box{position:static}
 .ig-load:focus-visible{outline:3px solid var(--yellow);outline-offset:-6px}
@@ -300,7 +302,7 @@ footer .d-in{display:flex;justify-content:space-between;align-items:center;gap:2
 
 <section class="sec" id="novedades" style="padding-top:56px;padding-bottom:0"><div class="d-in">
   <div class="reel-d">
-    <div class="reel-emb"><div class="ig-box"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DezkM9Qxjzi/" data-instgrm-version="14" style="max-width:540px;width:100%;margin:0 auto 16px"></blockquote><button class="ig-load" type="button"><span>Cargar video de Instagram</span><small>Se conecta con Instagram al hacer clic</small></button></div></div>
+    <div class="reel-emb"><div class="ig-box"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DezkM9Qxjzi/" data-instgrm-version="14" style="max-width:540px;width:100%;margin:0 auto 16px"></blockquote><button class="ig-load" type="button" aria-label="Reproducir el video del crucero (se carga desde Instagram)"><span class="ig-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><small>Se reproduce desde Instagram</small></button></div></div>
     <div class="reel-txt">
       <span class="tag" style="background:var(--yellow);color:#14202A">Novedades</span>
       <h2 class="sec-h">Crucero por el Caribe y Panamá</h2>
