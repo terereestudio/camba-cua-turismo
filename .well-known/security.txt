@@ -1,0 +1,5 @@
+# [COMPLETAR] Reemplazar la línea Contact por el email de seguridad de Tereré Estudio (ej.: mailto:seguridad@...)
+Contact: https://terereestudio.com.ar
+Expires: 2027-10-25T03:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://cambacuaviajes.netlify.app/.well-known/security.txt

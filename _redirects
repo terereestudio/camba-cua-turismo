@@ -1,0 +1,4 @@
+# Redirecciones - Netlify (Camba Cua Turismo)
+# Netlify sirve HTTPS automático (Let's Encrypt). Esta regla fuerza HTTPS en el subdominio de Netlify.
+http://cambacuaviajes.netlify.app/*  https://cambacuaviajes.netlify.app/:splat  301!
+# [COMPLETAR] Cuando haya dominio propio, agregar la misma regla para http://dominio y http://www.dominio
