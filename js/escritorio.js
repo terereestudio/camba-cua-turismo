@@ -35,3 +35,12 @@ document.querySelectorAll(".ig-load").forEach(function(b){
     document.body.appendChild(s);
   });
 });
+
+// Fondos fuera de la primera pantalla: se cargan al acercarse
+document.querySelectorAll("[data-bg]").forEach(function(el){
+  var set=function(){el.style.backgroundImage='url("'+el.dataset.bg+'")';};
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){set();o.unobserve(e.target);}});},{rootMargin:"200px"});
+    io.observe(el);
+  } else set();
+});
